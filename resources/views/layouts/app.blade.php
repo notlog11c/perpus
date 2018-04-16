@@ -11,13 +11,7 @@
     <title>{{ config('app.name', 'LibraryO') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-    <script src="{{ asset('js/bootstrap.min.js') }}" defer></script>
-    <script src="{{ asset('js/jquery-3.2.1.min.js') }}" defer></script>
-
-    //data tables
-    <script src="{{ asset('js/dataTables.bootstrap4.min.js') }}" defer></script>
-    <script src="{{ asset('js/jquery.dataTables.min.js') }}" defer></script>
+   
         
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
@@ -27,11 +21,9 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/fontawesome-all.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/dadadu.css') }}" rel="stylesheet">
-
-    //datatables style
     <link href="{{ asset('css/jquery.dataTables.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
-    
+
 
 </head>
 <body>
@@ -48,7 +40,16 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-
+                        @if (auth()->check())
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('home') }}">Beranda</a>
+                                </li>
+                            @role('admin')
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('authors.index') }}">Penulis</a>
+                                </li>
+                            @endrole
+                        @endif
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -85,7 +86,12 @@
             @yield('content')
         </main>
     </div>
+    <script src="{{ asset('js/app.js') }}" ></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}" ></script>
+    <script src="{{ asset('js/jquery-3.2.1.min.js') }}" ></script>
+    <script src="{{ asset('js/dataTables.bootstrap4.min.js') }}" ></script>
+    <script src="{{ asset('js/jquery.dataTables.min.js') }}" ></script>
 
-    @yield('scripts')
+    @stack('scripts')
 </body>
 </html>
