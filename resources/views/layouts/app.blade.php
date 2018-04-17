@@ -26,7 +26,7 @@
 
 
 </head>
-<body>
+<body style="background-image: url('images/test1.jpg'); background-size: cover;">
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
@@ -44,9 +44,12 @@
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('home') }}">Beranda</a>
                                 </li>
-                            @role('admin')
+                                @role('admin')
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('authors.index') }}">Penulis</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('books.index') }}">Buku</a>
                                 </li>
                             @endrole
                         @endif
@@ -83,7 +86,10 @@
         </nav>
 
         <main class="py-4">
+            @include('layouts._message')
+            
             @yield('content')
+            
         </main>
     </div>
     <script src="{{ asset('js/app.js') }}" ></script>

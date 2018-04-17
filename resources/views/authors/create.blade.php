@@ -16,26 +16,30 @@
                 </ol>
             </nav>
             <div class="card">
-                <div class="card-header">Tambah Penulis
+                <div class="card-header">Tambah Penulis</div>
                     <div class="card-body">
                         <form class="form-horizontal" action="{{ route('authors.store') }}" method="post">
                             @csrf
-
-                    <div class="form-group">
-                            <label for="name" class="col-md-2 control-label">Nama</label>
-                    <div class="col-md-4">
-                        <input type="text" class="form-control" id="name" name="name" placeholder="Nama Penulis">
-            </div>
-                </div>
-                    <div class="form-group">
-                        <div class="col-md-4 col-md-offset-2">
-                            <button type="submit" class="btn btn-primary">Simpan</button>
+                            <div class="form-group">
+                                <label for="name" class="col-md-2 control-label">Nama</label>
+                                <div class="col-md-4">
+                                    <input type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : ''}}" id="name" name="name" placeholder="Nama Penulis" value="{{ old('name') }}" autofocus>
+                                    @if ($errors->has('name'))
+                                    <span class="invalid-feedback">
+                                        <strong>{{ $errors->first('name') }}</strong>
+                                    </span>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-4 col-md-offset-2">
+                                    <button type="submit" class="btn btn-primary">Tambah</button>
                                 </div>
                             </div>    
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
-</div>
+    </div>
 @endsection

@@ -32,15 +32,3 @@
 @push('scripts')
 {!! $html ->scripts() !!}
 @endpush
-                                                    {{-- <table class="table table-bordered">
-                                                        <tr>
-                                                            <th>No</th>
-                                                            <th>Nama Penulis</th>
-                                                        </tr>
-                                                        @foreach ($authors as $key => $author)
-                                                            <tr>
-                                                                <td>{{ $key+1 }}</td>
-                                                                <td>{{ $author->name }}</td>
-                                                            </tr>
-                                                        @endforeach
-                                                    </table> --}}
