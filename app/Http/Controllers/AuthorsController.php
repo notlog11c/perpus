@@ -20,10 +20,20 @@ class AuthorsController extends Controller
         if ($request->ajax()){
             $authors = Author::all();
 
-            return DataTables::of($authors)->toJson();
+            return Datatables::of($authors)
+                    ->addColumn('action', function($author){
+                        return view('datatable._action',[
+                            'author_id' => $author->id,
+                            'edit_url' => route('authors.edit', $author->id),
+                            'show_url' => route('authors.show', $author->id),
+                            'delete_url' => route('authors.destroy', $author->id)
+                        ]);
+                    })->toJson();
         }
+
         $html = $htmlBuilder->columns([
-            ['data' => 'name', 'name' => 'name', 'title' => 'Nama']
+            ['data' => 'name', 'name' => 'name', 'title' => 'Nama'],
+            ['data' => 'action', 'name' => 'action', 'title' => '', 'orderable' => false, 'searchable' => false],
         ]);
 
         return view('authors.index', compact('html'));
@@ -57,4 +67,43 @@ class AuthorsController extends Controller
                         //     'message' => 'Berhasil Menyimpan Data' . $author->name
                         // ]);
     }
+
+    public function show(Author $author)
+    {
+        return view('authors.show', compact ('author'));
+    }
+
+    public function edit(Author $author)
+    {
+        return view('authors.edit', compact ('author'));
+    }
+
+    public function update(Request $request, Author $author)
+    {
+        $request->validate([
+            'name' => 'required|unique:authors,name,' . $author->id
+        ],
+        [
+            'name.required' => 'Field Tidak Boleh Kosong!',
+            'name.unique' => 'Nama Sudah Ada!'
+        ]);
+
+        $author->update($request->only('name'));
+
+        return redirect()->route('authors.index')->with('flash_notification', [
+            'level' => 'succes',
+            'message' => 'Berhasil Mengedit Data Penulis Dengan Nama <strong class="text-primary">' . $author->name . '</strong'
+        ]);
+    }
+
+    public function destroy(Author $author)
+    {
+        $author->delete();
+
+        return redirect()->route('authors.index')->with('flash_notification', [
+            'level' => 'danger',
+            'message' => 'Berhasil Menghapus Data Penulis Dengan Nama <strong class="text-danger">' . $author->name . '</strong'
+        ]);
+    }
 }
+

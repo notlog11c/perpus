@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use Session;
+use App\Book;
 use Illuminate\Http\Request;
+use Yajra\DataTables\DataTables;
+use Yajra\DataTables\Html\Builder;
+
 
 class BooksController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     * 
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function index(Request $request, Builder $htmlBuilder)
     {
         if ($request->ajax()){
             $books = Book::all();
@@ -35,7 +35,7 @@ class BooksController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**

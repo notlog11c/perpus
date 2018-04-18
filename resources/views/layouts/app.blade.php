@@ -46,7 +46,7 @@
                                 </li>
                                 @role('admin')
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('authors.index') }}">Penulis</a>
+                                    <a class="nav-link" href="{{ url('admin/authors') }}">Penulis</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('books.index') }}">Buku</a>

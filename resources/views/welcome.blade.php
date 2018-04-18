@@ -6,9 +6,6 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Login') }}</div>
-                    header {
-                        background-image: url("//img/background-header.jpg");
-                }
                 <div class="card-body">
                     Selamat Datang di Perpustakaan Online!
                 </div>
