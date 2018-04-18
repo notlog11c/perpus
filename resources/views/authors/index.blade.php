@@ -29,18 +29,17 @@
     </div>
 </div>
 @endsection
+
 @push('scripts')
 {!! $html ->scripts() !!}
+    <script>
+        $(document).ready(function (){
+            $(document.body).on('submit', '.js-confirm', function(){
+                var $el = $(this)
+                var text = $el.data('confirm') ? $el.data('confirm') : 'Anda Yakin Ingin ? Data Tidak Bisa Dikembalikan'
+                var c = confirm(text)
+                return c;
+            })
+        });
+    </script>
 @endpush
-                                                    {{-- <table class="table table-bordered">
-                                                        <tr>
-                                                            <th>No</th>
-                                                            <th>Nama Penulis</th>
-                                                        </tr>
-                                                        @foreach ($authors as $key => $author)
-                                                            <tr>
-                                                                <td>{{ $key+1 }}</td>
-                                                                <td>{{ $author->name }}</td>
-                                                            </tr>
-                                                        @endforeach
-                                                    </table> --}}
