@@ -23,7 +23,6 @@ class AuthorsController extends Controller
             return Datatables::of($authors)
                     ->addColumn('action', function($author){
                         return view('datatable._action',[
-                            'author_id' => $author->id,
                             'edit_url' => route('authors.edit', $author->id),
                             'show_url' => route('authors.show', $author->id),
                             'delete_url' => route('authors.destroy', $author->id),

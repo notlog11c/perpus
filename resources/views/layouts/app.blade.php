@@ -11,8 +11,8 @@
     <title>{{ config('app.name', 'LibraryO') }}</title>
 
     <!-- Scripts -->
-   
-        
+
+
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
@@ -87,16 +87,19 @@
 
         <main class="py-4">
             @include('layouts._message')
-            
+
             @yield('content')
-            
+
         </main>
     </div>
+
     <script src="{{ asset('js/app.js') }}" ></script>
     <script src="{{ asset('js/bootstrap.min.js') }}" ></script>
     <script src="{{ asset('js/jquery-3.2.1.min.js') }}" ></script>
     <script src="{{ asset('js/dataTables.bootstrap4.min.js') }}" ></script>
     <script src="{{ asset('js/jquery.dataTables.min.js') }}" ></script>
+    <script src="{{ asset('js/popup.js') }}" ></script>
+    {{-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> --}}
 
     @stack('scripts')
 </body>

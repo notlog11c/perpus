@@ -22,7 +22,7 @@ class Author extends Model
 
         
             if ($author->books->count() > 0) {
-                # code...
+                
                 $messageHtml = 'penulis tidak bisa dihapus karena masih memiliki buku!';
                 $messageHtml .= '<ul>';
                 foreach ($author->books as $book) {
