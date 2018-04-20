@@ -23,6 +23,7 @@
     <link href="{{ asset('css/dadadu.css') }}" rel="stylesheet">
     <link href="{{ asset('css/jquery.dataTables.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/selectize.bootstrap4.css') }}" rel="stylesheet">
 
 
 </head>
@@ -93,11 +94,12 @@
         </main>
     </div>
 
-    <script src="{{ asset('js/app.js') }}" ></script>
+    {{-- <script src="{{ asset('js/app.js') }}" ></script> --}}
     <script src="{{ asset('js/bootstrap.min.js') }}" ></script>
     <script src="{{ asset('js/jquery-3.2.1.min.js') }}" ></script>
     <script src="{{ asset('js/dataTables.bootstrap4.min.js') }}" ></script>
     <script src="{{ asset('js/jquery.dataTables.min.js') }}" ></script>
+    <script src="{{ asset('js/selectize.min.js') }}" ></script>
     <script src="{{ asset('js/popup.js') }}" ></script>
     {{-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> --}}
 

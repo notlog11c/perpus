@@ -15,15 +15,14 @@
                 <div class="card-header">Data Buku</div>
 
                 <div class="card-body">
-                   Judul Buku : <strong>{{ $book->title }}</strong>
-                   <br>
-                   Id Author : <strong>{{ $book->author->name }}</strong>
-                   <br>
-                   Amount : <strong>{{ $book->amount }}</strong>
-                   <br>
-                   Cover :
-                   <br>
-                    <img src="{{ asset('cover/' . $book->cover) }}" width="700px" height="500px">
+                    <img class="float-right" src="{{ asset('cover/' . $book->cover) }}" width="500px" height="300px">
+                    <br>
+                    Judul Buku : <strong>{{ $book->title }}</strong>
+                    <br>
+                    Id Author : <strong>{{ $book->author->name }}</strong>
+                    <br>
+                    Amount : <strong>{{ $book->amount }}</strong>
+                    <br>
                 </div>
             </div>
         </div>

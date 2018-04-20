@@ -36,8 +36,8 @@
                                     
                                     <label for="name" class="col-md-2 control-label">Penulis</label>
                                     <div class="col-md-4">
-                                        <select class="form-control {{ $errors->has('author_id') ? ' is-invalid' : ''}}" name="author_id">
-                                            <option selected>**Pilih Penulis**</option>
+                                        <select class="form-control js-selectize {{ $errors->has('author_id') ? ' is-invalid' : ''}}" name="author_id">
+                                            {{-- <option selected>**Pilih Penulis**</option> --}}
                                             @foreach ($authors as $author)
                                                 <option value="{{ $author->id }}">{{ $author->name }}</option>
                                             @endforeach

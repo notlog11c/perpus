@@ -5,4 +5,8 @@
             var c = confirm(text)
             return c;
         })
+
+        $('.js-selectize').selectize({
+            sortField: 'text'
+        });
     });

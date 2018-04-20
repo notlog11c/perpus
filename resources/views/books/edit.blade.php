@@ -33,14 +33,14 @@
                         <div class="form-group">
                             <label for="text" class="col-md-2 control-label">Penulis</label>
                             <div class="col-md-4">
-                                <select class="costum-select form-control {{ $errors->has('author_id') ? ' is-invalid' : ''}}" name="author_id">
+                                <select class="costum-select form-control js-selectize {{ $errors->has('author_id') ? ' is-invalid' : ''}}" name="author_id">
                                     @foreach ($authors as $author)
                                         <option value="{{ $author->id }}"
                                             @if($book->author_id == $author->id)
                                                 selected
                                             @endif>
                                             {{ $author->name }}
-                                            Edit              </option>
+                                        </option>
                                     @endforeach
                                 </select>
                                     @if ($errors->has('author_id'))
@@ -62,7 +62,7 @@
                                 @endif
                             </div>
                         </div>
-
+                        <br>
                         <div class="from-group">
                             <label for="text" class="col-md-2 control-label">Upload Cover</label>
                             <div class="col-md-4">
@@ -73,11 +73,12 @@
                                     </span>
                                 @endif
                             </div>
+                            <br>
                             @if ($book->cover)
                                 <img src="{{ asset('cover/' .$book->cover) }}" width="100px" height="100px">
                             @endif
-                        </div> 
-                                                    
+                        </div>
+                        <br>                      
                         <div class="form-group">
                             <div class="col-md-4 col-md-offset-2">
                                 <button type="submit" class="btn btn-primary">Edit</button>
