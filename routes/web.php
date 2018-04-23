@@ -15,6 +15,8 @@ Route::get('/', 'GuestController@index');
 
 Route::get('/books/{book}/borrow', 'BooksController@borrow')->name('guests.books.borrow');
 
+Route::patch('/books/{book}/return', 'BooksController@return')->name('member.books.return');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

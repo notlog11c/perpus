@@ -42,6 +42,9 @@ class HomeController extends Controller
 
     public function memberDashboard()
     {
-        return view('dashboard.member');
+        $borrowLogs = auth()->user()->borrowLogs()->borrowed()->get();
+
+        return view('dashboard.member', compact('borrowLogs'));
+    
     }
 }
