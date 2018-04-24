@@ -20,4 +20,4 @@
 
 @push('scripts')
 {!! $html ->scripts() !!}
-@endpush
+@endpush`   

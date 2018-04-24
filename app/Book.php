@@ -3,9 +3,37 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Session;
 
 class Book extends Model
 {
+    public static function boot()
+    {
+        parent::boot();
+
+        self::updating(function ($book) {
+            if($book->amount < $book->borrowed) {
+                Session::flash('flash_notification', [
+                    'level' => 'danger',
+                    'message' => "Jumlah buku $book->title harus >= .$book->borrowed"
+                ]);
+
+                return false;
+            }
+        });
+
+        self::deleting(function ($book) {
+            if ($book->borrowLogs()->count() > 0) {
+                Session::flash('flash_notification', [
+                    'level' => 'danger',
+                    'message' => "buku $book->title sudah pernah dipinjam"
+                ]);
+
+                return false;
+            }
+        });
+    }
+
     protected $fillable = [
         'title', 'amount', 'cover', 'author_id'
     ];
@@ -26,5 +54,10 @@ class Book extends Model
         $stock = $this->amount - $borrowed;
 
         return $stock;
+    }
+
+    public function getBorrowedAttribute()
+    {
+        return $this->borrowLogs()->borrowed()->count();
     }
 }

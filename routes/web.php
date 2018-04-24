@@ -17,6 +17,8 @@ Route::get('/books/{book}/borrow', 'BooksController@borrow')->name('guests.books
 
 Route::patch('/books/{book}/return', 'BooksController@return')->name('member.books.return');
 
+Route::get('/refresh-captcha', 'Auth\RegisterController@refreshCaptcha');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

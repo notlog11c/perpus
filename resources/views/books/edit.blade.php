@@ -55,8 +55,9 @@
                             <label for="text" class="col-md-2 control-label">Stock</label>
                             <div class="col-md-4">
                                 <input type="number" class="form-control {{ $errors->has('amount') ? ' is-invalid' : ''}}" id="amount" name="amount" value="{{ $book->amount }}">
+                                
                                 @if ($errors->has('amount'))
-                                <span class="invalid-feedback">
+                                <span class="is-invalid">
                                     <strong>{{ $errors->first('amount') }}</strong>
                                 </span>
                                 @endif
