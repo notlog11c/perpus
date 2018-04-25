@@ -30,6 +30,7 @@ class UsersSeeder extends Seeder
             'name' => 'Admin',
             'email' => 'admin@mail.com',
             'password' => bcrypt('123123'),
+            'is_verified' => 1
         ]);
 
         $adminUser->attachRole($roleAdmin);
@@ -39,6 +40,7 @@ class UsersSeeder extends Seeder
             'name' => 'Member',
             'email' => 'Member@mail.com',
             'password' => bcrypt('321321'),
+            'is_verified' => 1
         ]);
 
         $adminUser->attachRole($roleMember);
