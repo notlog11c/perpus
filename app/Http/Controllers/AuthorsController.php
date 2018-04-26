@@ -108,4 +108,3 @@ class AuthorsController extends Controller
         ]);
     }
 }
-
