@@ -5,6 +5,7 @@ namespace App;
 use App\Book;
 use App\BorrowLog;
 use App\Exceptions\BookException;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Notifications\Notifiable;
 use Laratrust\Traits\LaratrustUserTrait;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -56,5 +57,24 @@ class User extends Authenticatable
             'user_id' => auth()->user()->id,
             'book_id' => $book->id
         ]);
+    }
+
+    public function sendEmailVerification()
+    {
+        $user = $this;
+        $token = str_random(40);
+        $user->verification_token = $token;
+        $user->save();
+
+        Mail::send('auth.emails.verification', compact('user', 'token'), function ($m) use ($user) {
+            $m->to($user->email, $user->name)->subject('Verifikasi akun perpustakaan');
+        });
+    }
+
+    public function verify()
+    {
+        $this->is_verified = 1;
+        $this->verification_token = null;
+        $this->save();
     }
 }

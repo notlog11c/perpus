@@ -13,6 +13,8 @@
 
 Route::get('/', 'GuestController@index');
 
+Route::get('/auth/verify/{token}', 'Auth\RegisterController@verify');
+
 Route::get('/books/{book}/borrow', 'BooksController@borrow')->name('guests.books.borrow');
 
 Route::patch('/books/{book}/return', 'BooksController@return')->name('member.books.return');
@@ -28,4 +30,3 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin']], func
     Route::resource('authors', 'AuthorsController');   
     Route::resource('books', 'BooksController');
 });
-

@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Session;
 use App\Role;
 use App\User;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -39,6 +41,7 @@ class RegisterController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
+        $this->middleware('user-should-verified');
     }
 
     /**
@@ -77,11 +80,32 @@ class RegisterController extends Controller
 
         $user->attachRole($memberRole);
 
+        $user->sendEmailVerification();
+
         return $user;
     }
 
     public function refreshCaptcha()
     {
         return response()->json(['captcha' => captcha_img()]);
+    }
+
+    public function verify(Request $request, $token)
+    {
+        $email = $request->email;
+        $user = User::where('verification_token', $token)->where('email', $email)->first();
+
+        if($user) {
+            $user->verify();
+
+            Session::flash('flash_notification', [
+                'level' => 'success',
+                'message' => 'Berhasil Melakukan Verifikasi. Yey!'
+            ]);
+
+            auth()->login($user);
+        }
+
+        return redirect('/');
     }
 }
